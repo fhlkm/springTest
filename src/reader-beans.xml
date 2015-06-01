@@ -6,7 +6,39 @@
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
    <bean id="fileReader" class="com.oreilly.justspring.ch1.FileReader">
-      <constructor-arg value="myfile.txt"></constructor-arg>
+<!--       <constructor-arg value="myfile.txt"></constructor-arg> -->
+      		<constructor-arg value="myfile.txt"/>
+			<property  name ="componentName"  value="TradeFileReader" />
    </bean>
 
+   <bean name ="readerService" class="com.oreilly.justspring.ch1.ReaderService">
+<!--        <constructor-arg ref="fileReader"/> -->
+<!-- property by get set, constructor-arg by constructor method -->
+	<property name="reader" ref="tfileReader"/>
+<!-- 		<property name="reader" ref="ftpReader"/> -->
+   </bean>
+   
+<!--    <bean name="ftpReader" class="com.oreilly.justspring.ch1.FtpReader"> -->
+<!--        <constructor-arg value="oreilly.com"/> -->
+<!--        <constructor-arg value="10009"/> -->
+	
+<!--    </bean> -->
+
+	<bean name="ftpReader" class="com.oreilly.justspring.ch1.FtpReader">
+		<property name="ftpHost" value="${ftp-host}" />
+		<property name="ftpPort" value="${ftp-port}" />
+	</bean>
+
+
+	<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:reader-beans.properties" />
+	</bean>
+
+
+
+	
+	<bean name="tfileReader" class="com.oreilly.justspring.ch2.FileReader" init-method="init"  destroy-method="cleanUp">
+	    </bean>
+	    
+	<bean name="trade" ref="com.oreilly.justspring.ch2.Trade" singleton="false" init-method="initId"/>
 </beans>

@@ -5,7 +5,7 @@ package com.madhusudhan.jscore.basics;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.oreilly.justspring.ch1.Reader;
+import com.oreilly.justspring.ch1.IReader;
 
 
 /**
@@ -19,14 +19,14 @@ public class DataReaderClient {
 
 	private ApplicationContext ctx = null;
 	
-    private Reader reader = null;
+    private IReader reader = null;
 
     public DataReaderClient() {
     	ctx = new ClassPathXmlApplicationContext("reader-beans.xml");
     }
 
     private String fetchData() {
-    	reader = (Reader)ctx.getBean("fileReader");
+    	reader = (IReader)ctx.getBean("fileReader");
    
         return reader.read();
     }

@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author kondama
  *
  */
-public class FileReader implements Reader {
+public class FileReader implements IReader {
 
     private StringBuilder builder = null;
     private Scanner scanner = null;

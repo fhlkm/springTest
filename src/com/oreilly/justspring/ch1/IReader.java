@@ -7,6 +7,6 @@ package com.oreilly.justspring.ch1;
  * @author kondama
  * 
  */
-public interface Reader {
+public interface IReader {
   public String read();
 }
